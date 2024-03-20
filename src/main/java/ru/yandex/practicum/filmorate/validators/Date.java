@@ -1,4 +1,4 @@
-package ru.yandex.practicum.filmorate.datevalidators;
+package ru.yandex.practicum.filmorate.validators;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -10,10 +10,14 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = IsAfterFromNowValidator.class)
+@Constraint(validatedBy = DateValidator.class)
 @Documented
-public @interface IsAfterThanNow {
-    String message() default "Date is after from now";
+public @interface Date {
+    String afterThis();
+
+    String message() default "Date is before";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }

@@ -1,13 +1,13 @@
-package ru.yandex.practicum.filmorate.model;
+package ru.yandex.practicum.filmorate.models;
 
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
-import ru.yandex.practicum.filmorate.datevalidators.IsAfterThanNow;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDate;
 
@@ -25,6 +25,6 @@ public class User {
     private String name;
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @IsAfterThanNow()
+    @Past
     private LocalDate birthday;
 }
