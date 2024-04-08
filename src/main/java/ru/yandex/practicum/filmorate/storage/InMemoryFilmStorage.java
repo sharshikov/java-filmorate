@@ -20,8 +20,8 @@ public class InMemoryFilmStorage implements FilmStorage {
     public Film addFilm(Film film) {
         film.setId(id);
         films.put(film.getId(), film);
+        log.info(String.format("Добавлен фильм %s", id));
         id++;
-        log.info("Добавлен фильм");
         return film;
     }
 
@@ -31,7 +31,7 @@ public class InMemoryFilmStorage implements FilmStorage {
             throw new NotFoundDataException("Не найден фильм с таким id " + film.getId());
         }
         films.put(film.getId(), film);
-        log.info("Обновлен фильм");
+        log.info(String.format("Обновлен фильм %s", id));
         return film;
     }
 

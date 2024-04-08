@@ -29,8 +29,8 @@ public class InMemoryUserStorage implements UserStorage {
         }
         user.setId(id);
         users.put(user.getId(), user);
+        log.info(String.format("Добавлен пользователь %s", id));
         id++;
-        log.info("Добавлен пользователь");
         return user;
     }
 
@@ -43,7 +43,7 @@ public class InMemoryUserStorage implements UserStorage {
             throw new NotFoundDataException("Не найден пользователь с таким id " + user.getId());
         }
         users.put(user.getId(), user);
-        log.info("Обновлен пользователь");
+        log.info(String.format("Обновлен пользователь %s", id));
         return user;
     }
 

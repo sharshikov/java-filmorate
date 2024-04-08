@@ -1,6 +1,5 @@
 package ru.yandex.practicum.filmorate.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.yandex.practicum.filmorate.model.User;
-import ru.yandex.practicum.filmorate.service.UserService;
+import ru.yandex.practicum.filmorate.service.UserFriendService;
 import ru.yandex.practicum.filmorate.storage.UserStorage;
 
 import javax.validation.Valid;
@@ -20,10 +19,9 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
     private final UserStorage userStorage;
-    private final UserService userService;
+    private final UserFriendService userService;
 
-    @Autowired
-    public UserController(UserStorage userStorage, UserService userService) {
+    public UserController(UserStorage userStorage, UserFriendService userService) {
         this.userStorage = userStorage;
         this.userService = userService;
     }

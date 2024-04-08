@@ -1,7 +1,6 @@
 package ru.yandex.practicum.filmorate.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.storage.UserStorage;
@@ -12,10 +11,9 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class UserService {
+public class UserService implements UserFriendService {
     private final UserStorage userStorage;
 
-    @Autowired
     public UserService(UserStorage userStorage) {
         this.userStorage = userStorage;
     }
@@ -30,8 +28,9 @@ public class UserService {
             secondUser.setFriendsId(new HashSet<>());
         }
         firstUser.getFriendsId().add(secondId);
+        log.info(String.format("Пользователю %s добавлен друг %s", firstId, secondId));
         secondUser.getFriendsId().add(firstId);
-        log.info("Добавлен друг");
+        log.info(String.format("Пользователю %s добавлен друг %s", secondId, firstId));
         return firstUser;
     }
 
@@ -41,12 +40,13 @@ public class UserService {
         if (firstUser.getFriendsId() != null
                 && !firstUser.getFriendsId().isEmpty()) {
             firstUser.getFriendsId().remove(secondId);
+            log.info(String.format("У пользователя %s удален друг %s", firstId, secondId));
         }
         if (secondUser.getFriendsId() != null
                 && !secondUser.getFriendsId().isEmpty()) {
             secondUser.getFriendsId().remove(firstId);
+            log.info(String.format("У пользователя %s удален друг %s", secondId, firstId));
         }
-        log.info("Удален друг");
         return firstUser;
     }
 
