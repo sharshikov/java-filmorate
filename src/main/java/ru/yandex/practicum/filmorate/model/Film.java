@@ -1,16 +1,18 @@
-package ru.yandex.practicum.filmorate.models;
+package ru.yandex.practicum.filmorate.model;
 
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
-import ru.yandex.practicum.filmorate.validators.Date;
+import ru.yandex.practicum.filmorate.validator.Date;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.Set;
 
 /**
  * Film.
@@ -33,4 +35,6 @@ public class Film {
     private LocalDate releaseDate;
     @Positive
     private int duration;
+    @Null
+    private Set<Integer> usersIdWithLike;
 }
