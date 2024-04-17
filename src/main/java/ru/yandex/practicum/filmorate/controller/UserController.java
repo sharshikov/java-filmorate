@@ -1,5 +1,6 @@
 package ru.yandex.practicum.filmorate.controller;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +22,7 @@ public class UserController {
     private final UserStorage userStorage;
     private final UserFriendService userService;
 
-    public UserController(UserStorage userStorage, UserFriendService userService) {
+    public UserController(@Qualifier("userDbStorage") UserStorage userStorage, @Qualifier("userDbService") UserFriendService userService) {
         this.userStorage = userStorage;
         this.userService = userService;
     }

@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import ru.yandex.practicum.filmorate.validator.Date;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
@@ -37,4 +38,9 @@ public class Film {
     private int duration;
     @Null
     private Set<Integer> usersIdWithLike;
+    @Valid
+    private Set<Genre> genres;
+    @NotNull
+    @Valid
+    private Mpa mpa;
 }
