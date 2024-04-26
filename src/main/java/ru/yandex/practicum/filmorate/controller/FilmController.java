@@ -1,5 +1,6 @@
 package ru.yandex.practicum.filmorate.controller;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +23,7 @@ public class FilmController {
     private final FilmStorage filmStorage;
     private final FilmLikeService filmService;
 
-    public FilmController(FilmStorage filmStorage, FilmLikeService filmService) {
+    public FilmController(@Qualifier("filmDbStorage") FilmStorage filmStorage, @Qualifier("filmDbService") FilmLikeService filmService) {
         this.filmStorage = filmStorage;
         this.filmService = filmService;
     }
@@ -30,6 +31,11 @@ public class FilmController {
     @GetMapping()
     public List<Film> getFilms() {
         return filmStorage.getFilms();
+    }
+
+    @GetMapping("{id}")
+    public Film getFilm(@PathVariable("id") int id) {
+        return filmStorage.getFilm(id);
     }
 
     @PutMapping()

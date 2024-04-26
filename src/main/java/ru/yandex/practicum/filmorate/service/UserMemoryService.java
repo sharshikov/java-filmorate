@@ -1,6 +1,7 @@
 package ru.yandex.practicum.filmorate.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.storage.UserStorage;
@@ -11,10 +12,10 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class UserService implements UserFriendService {
+public class UserMemoryService implements UserFriendService {
     private final UserStorage userStorage;
 
-    public UserService(UserStorage userStorage) {
+    public UserMemoryService(@Qualifier("inMemoryUserStorage") UserStorage userStorage) {
         this.userStorage = userStorage;
     }
 
